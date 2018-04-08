@@ -51,7 +51,12 @@ public class RenderContext extends GreenfootImage
     {
         Arrays.fill(imageData, -16777216);
     }
-    
+    public void setFont(java.awt.Font font){//for compatibility with java.awt.Font and greenfoot.Font
+        super.setFont(new greenfoot.Font(font.getName(), font.isBold(), font.isItalic(), font.getSize()));
+    }
+    public void setColor(java.awt.Color color){//for compatibility with java.awt.Color and greenfoot.Color
+        super.setColor(new greenfoot.Color(color.getRed(),color.getGreen(), color.getBlue()));
+    }
     public void setCullBackFace(boolean b)
     {
         cullBackFace = b;
@@ -192,11 +197,11 @@ public class RenderContext extends GreenfootImage
                   continue;
                 }
                 
-                Color color = readImageData(texture, srcX, srcY);
+                java.awt.Color color = readImageData(texture, srcX, srcY);
                 
                 if (ambientLighting)
                 {
-                    color = new Color((int)(color.getRed() * ambientLight), (int)(color.getGreen() * ambientLight), (int)(color.getBlue() * ambientLight));
+                    color = new java.awt.Color((int)(color.getRed() * ambientLight), (int)(color.getGreen() * ambientLight), (int)(color.getBlue() * ambientLight));
                 }
                 
                 if (color.getAlpha() == 255)
@@ -214,18 +219,18 @@ public class RenderContext extends GreenfootImage
         }
     }
     
-    private void writeImageData(int x, int y, Color color)
+    private void writeImageData(int x, int y, java.awt.Color color)
     {
         int index = y * getWidth() + x;
         imageData[index] = color.getRGB();
     }
     
-    private Color readImageData(GreenfootImage img, int x, int y)
+    private java.awt.Color readImageData(GreenfootImage img, int x, int y)
     {
         int index = y * img.getWidth() + x;
         int rgb = ((DataBufferInt)img.getAwtImage().getRaster().getDataBuffer()).getData()[index];
         
-        return new Color(rgb);
+        return new java.awt.Color(rgb);
     }
     
     private boolean clipPolygonAxis(ArrayList<Vertex> vertices, ArrayList<Vertex> auxList, int componentIndex)

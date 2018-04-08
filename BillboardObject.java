@@ -1,6 +1,6 @@
 import greenfoot.GreenfootImage;
 
-import java.awt.Color;
+import greenfoot.Color;
 
 import java.util.ArrayList;
 

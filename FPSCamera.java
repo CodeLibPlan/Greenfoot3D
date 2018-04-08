@@ -57,7 +57,7 @@ public class FPSCamera extends Camera
         calibFrame.setSize(world.getWidth(), world.getHeight());
         
         GreenfootImage image = new GreenfootImage(10, 10);
-        image.setColor(Color.RED);
+        image.setColor(greenfoot.Color.RED);
         image.fillOval(0, 0, 10, 10);
         
         GUIImageLabel calibCircle = new GUIImageLabel();
